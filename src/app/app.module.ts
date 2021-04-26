@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HeroFormComponent } from './hero-form/hero-form.component';
+import { HeroesModule } from './hero-form/heroes.module';
+import { ReactiveFormModule } from './reactive-form/reactive-form.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HeroesModule,
+    AppRoutingModule,
+    ReactiveFormModule
   ],
   declarations: [
     AppComponent,
-    HeroFormComponent
   ],
-  providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
