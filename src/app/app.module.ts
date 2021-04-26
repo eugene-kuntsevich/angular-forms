@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { FormlyLibModule } from './formly-lib/formly-lib.module';
 import { HeroesModule } from './hero-form/heroes.module';
 import { ReactiveFormModule } from './reactive-form/reactive-form.module';
 
@@ -13,7 +14,8 @@ import { ReactiveFormModule } from './reactive-form/reactive-form.module';
     FormsModule,
     HeroesModule,
     AppRoutingModule,
-    ReactiveFormModule
+    ReactiveFormModule,
+    FormlyLibModule,
   ],
   declarations: [
     AppComponent,
