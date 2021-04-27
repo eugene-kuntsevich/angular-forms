@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -16,10 +16,14 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 import { FormlyLibComponent } from './formly-lib.component';
+import { FormlyValidators } from './formly-validators';
+import { FormlyWarningMessages } from './formly-warning-messages';
+import { RepeatTypeComponent } from './repeat-type-component/repeat-type.component';
 
 @NgModule({
   declarations: [
     FormlyLibComponent,
+    RepeatTypeComponent,
   ],
   imports: [
     CommonModule,
@@ -39,9 +43,22 @@ import { FormlyLibComponent } from './formly-lib.component';
     FormlyMatDatepickerModule,
     FormlyMatToggleModule,
 
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      validationMessages: [
+        {name: 'required', message: FormlyWarningMessages.validateRequired},
+        {name: 'minlength', message: FormlyWarningMessages.validateMinLength},
+        {name: 'maxlength', message: FormlyWarningMessages.validateMaxLength},
+        {name: 'min', message: FormlyWarningMessages.validateMin},
+        {name: 'max', message: FormlyWarningMessages.validateMax},
+      ],
+      validators: [{name: 'ip', validation: FormlyValidators.ipValidator}],
+      // Add RepeatTypeComponent
+      types: [{name: 'repeat', component: RepeatTypeComponent}],
+    }),
     FormlyMaterialModule,
     BrowserAnimationsModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
+
 export class FormlyLibModule {}

@@ -18,6 +18,7 @@ export class FormlyLibComponent implements OnInit {
     {
       key: 'email',
       type: 'input',
+      hideExpression: '!model.name',
       templateOptions: {
         label: 'Email address',
         placeholder: 'Enter email',
@@ -95,7 +96,7 @@ export class FormlyLibComponent implements OnInit {
         description: 'Fill in your gender',
         options: [
           {value: 1, label: 'Male'},
-          {value: 2, label: 'Femail'},
+          {value: 2, label: 'Female'},
           {value: 3, label: 'I don\'t want to share that'},
         ],
       },
@@ -144,6 +145,55 @@ export class FormlyLibComponent implements OnInit {
         options: [
           {value: 'single', label: 'Single product'},
           {value: 'bulk', label: 'Bulk product'},
+        ],
+      },
+    },
+    {
+      key: 'ip',
+      type: 'input',
+      templateOptions: {
+        label: 'IP Address (using custom validation declared in ngModule)',
+        required: true,
+      },
+      validators: {
+        validation: ['ip'],
+      },
+    },
+    // Repeatable section
+    {
+      key: 'investments',
+      type: 'repeat',
+      templateOptions: {
+        addText: 'Add another investment',
+      },
+      fieldArray: {
+        fieldGroup: [
+          {
+            type: 'input',
+            key: 'investmentName',
+            templateOptions: {
+              label: 'Name of Investment:',
+              required: true,
+            },
+          },
+          {
+            type: 'datepicker',
+            key: 'investmentDate',
+            templateOptions: {
+              label: 'Date of Investment:',
+            },
+          },
+          {
+            key: 'amount',
+            type: 'input',
+            templateOptions: {
+              type: 'number',
+              label: 'Amount',
+              placeholder: 'Enter amount',
+              min: 1,
+              max: 15,
+            },
+          },
         ],
       },
     },
